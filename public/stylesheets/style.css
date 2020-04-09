@@ -1,8 +1,24 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #a9a9a9;
 }
 
 a {
   color: #00B7FF;
+}
+
+.modal-content{
+  top: 100px;
+  background-color: black;
+}
+.btn-link{
+  color:white;
+}
+.modal-heading h2{
+  color:#ffffff;
+}
+
+h5{
+  padding-right: 18px;
+  padding-top:10px;
 }
