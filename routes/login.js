@@ -13,17 +13,20 @@ app.get('/login', function (req, res, next) {
     let creadPresent = auth_user(cred.username, cred.password);
     if (creadPresent) {
         //make token
-        //dont'create hash , ecrypt it.
-        let token = crypto.createHash('sha256').update(cred.username + cred.password).digest('hex');
+        //ecrypt username and password and use it as token.
+        let cipher = crypto.createCipher('aes192', 'secret123');
+        creadJSONString = { "password": cred.password, "username": cred.username };
+        let encrypted = cipher.update(JSON.stringify(creadJSONString), 'utf8', 'hex');
+        encrypted += cipher.final('hex');
         //put cookies
         res.cookie('is_loggedin', 'yes', { httpOnly: true, maxAge: 60000 });
-        res.cookie('auth_token', token, { httpOnly: true, maxAge: 60000 });
+        res.cookie('auth_token', encrypted, { httpOnly: true, maxAge: 60000 });
         //send status and end req. 
         res.status(200).end();
     }
     else {
         //if creadentials not present
-        next(createError(400));
+        next(createError(401));
     }
 });
   
