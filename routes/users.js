@@ -3,13 +3,13 @@ var app = express.Router();
 var userData = require('../data/users-data');
 var userPosts = userData.userPosts;
 var userInfo = userData.userInfo;
+bodyParser = require('body-parser').json();
 
 //post method for posting posts
-app.post('/postText/:postText', (req, res, next) => {
-  let username = requsername;
-  let postText = req.query.postText;
-  let pid = userPosts[userPosts.length - 1].pid + 1;
-  userPosts.push({'pid': pid,'username': username, 'postText': postText });
+app.post('/addPost', (req, res, next) => {
+  let username = req.username;
+  let post = req.body.postText;
+  userData.addPost(post,username);
   res.end();
 });
 

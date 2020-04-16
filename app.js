@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var logInOutRouter = require('./routes/logInOut');
 
 var auth_middleware = require('./middleware/auth_middleware');
+
 var app = express();
 
 // view engine setup
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/', indexRouter);
 app.use('/', logInOutRouter);
 app.use('/api',auth_middleware,usersRouter);

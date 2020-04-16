@@ -4,7 +4,6 @@ const auth_user = require('../data/auth-user');
 const userData = require('../data/users-data');  
 var app = express.Router();
 
-
 //post method for logout
 app.post('/logout', function (req, res, next) {
     res.clearCookie('is_loggedin');
@@ -12,26 +11,23 @@ app.post('/logout', function (req, res, next) {
     res.status(205).end();
   });
   
-
 //get for authentication
-app.get('/login', function (req, res, next) {
-    let cred = req.query;
+app.post('/login', function (req, res, next) {
+    let cred = req.body;
     if (!cred.username || !cred.password) { 
       //checks if both username and password are present.
         res.status(400).end();
     }
     let creadPresent = auth_user(cred.username, cred.password);
     if (creadPresent) {
-        console.log("inside");
         //make token
         //ecrypt username and password and use it as token.
         encrypted = encrypt(cred.username, cred.password);
         //put cookies
         res.cookie('is_loggedin', 'yes', { httpOnly: true, maxAge: 600000 });
         res.cookie('auth_token', encrypted, { httpOnly: true, maxAge: 600000 });
-        //send status and send userDetails. 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).end(JSON.stringify(userData.getUserDetails(cred.username)));
+        //send status. 
+         res.status(200).end();
     }
     else {
         //if creadentials not present
