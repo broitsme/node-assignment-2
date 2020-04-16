@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+    <script type="text/javascript" src="./javascripts/userinfo.js"></script>
+    <script type="text/javascript" src="./javascripts/userlogInOut.js"></script>
+    <title>API</title>
+</head>
+<body style="background: rgb(96, 99, 98);">
+    <nav class="navbar navbar-dark bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="./images/fb-logo.png" alt="Logo" style="width:40px;">
+      </a>      
+      <form class="form-inline">
+       <div class="name">
+        
+      </div>
+        <button class="btn btn-danger my-2 my-sm-0" type="logout" onclick="logout()">logout</button>
+      </form>
+    </nav>
+    <div class="container-fluid" style="width: 75%">
+      <div class="d-flex flex-column bd-highlight mb-3">
+    <div class="poster" style="margin: 5px; padding: 5px;">
+      <form onsubmit="return false">
+        <div class="form-group">
+          <label></label>
+          <textarea type="text" class="form-control" rows="2" id="posterText" placeholder="Write new post"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="postText()" style="float: right;">Post it!</button>
+      </form>
+    </div>
+    <div class="posts">
+    <div class="d-flex flex-column bd-highlight mb-3">
+    </div>  
+  </div>
+</div>
+  </div>
+</body>
+</html>
